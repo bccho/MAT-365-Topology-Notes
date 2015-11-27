@@ -1,0 +1,232 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 107.0,
+		"last_filter": "latextools",
+		"selected_items":
+		[
+			[
+				"latextools",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			],
+			[
+				"preferences",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Build: Cancel"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"package control",
+			"restart",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/bccho/Documents/Princeton/Year 2/Courses/Fall 2015/MAT 365/Notes and Study/List of all the things/MAT 365 Big List 01.tex",
+		"/Users/bccho/Documents/Princeton/Year 2/Courses/Fall 2015/MAT 365/Problem Sets/Problem Set 03/MAT 365 Problem Set 03.tex",
+		"/Users/bccho/Documents/NZMOSA/NZMO/2016 NZMO/2016 NZMO Email.html",
+		"/Users/bccho/Documents/Princeton/Year 2/Courses/Fall 2015/ELE 206/Laboratory Material/Lab 1/lab1/Decoder3x8.v",
+		"/Users/bccho/Documents/Princeton/Year 2/Courses/Fall 2015/ELE 206/Laboratory Material/Lab 1/lab1/Decoder3x8_structural.v",
+		"/Users/bccho/Documents/Princeton/Year 2/Courses/Fall 2015/ELE 206/Laboratory Material/Lab 1/lab1/asdf",
+		"/Users/bccho/Documents/Princeton/Year 2/Courses/Fall 2015/ELE 206/Laboratory Material/Lab 1/bccho_lab1/Decoder3x8_structural.v",
+		"/Users/bccho/Documents/Princeton/Year 2/Courses/Fall 2015/ELE 206/Laboratory Material/Lab 1/lab1/Popcount_behavioral.v",
+		"/Users/bccho/Documents/Princeton/Year 2/Courses/Fall 2015/ELE 206/Laboratory Material/Lab 1/lab1/Popcount_structural.v",
+		"/Users/bccho/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/bccho/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/bccho/Documents/Princeton/Year 2/Courses/Fall 2015/MAT 365/Problem Sets/Problem Set 01/MAT 365 Problem Set 01.tex",
+		"/Users/bccho/Documents/Eclipse/Doodle Triangles/src/DoodleTriangles.java",
+		"/Users/bccho/Documents/Eclipse/DownloadPDF/PDFsFromURL.java",
+		"/Users/bccho/Desktop/2016 New Zealand Mathematical Olympiad/2016 New Zealand Mathematical Olympiad.html",
+		"/Users/bccho/Documents/Programs/Haskell/BCTest01.hs",
+		"/Users/bccho/Documents/Programs/C++/BHC/08.cpp",
+		"/Users/bccho/Documents/Tutoring/2015 IGCSE Chemistry/Workbook/0Diagnostic.pdf",
+		"/Users/bccho/Documents/Programs/C++/BHC/10.cpp",
+		"/Users/bccho/Documents/Programs/C++/BHC/06.cpp",
+		"/Users/bccho/Documents/Programs/C++/BHC/03.cpp",
+		"/Users/bccho/Documents/Programs/C++/BHC/01.cpp",
+		"/Users/bccho/Documents/Programs/C/COS 217/Assignment 01 Decomment/decomment.c",
+		"/Users/bccho/Documents/Programs/test.c",
+		"/Users/bccho/Desktop/test.cpp"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "MAT 365 LoATT.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

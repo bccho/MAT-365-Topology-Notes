@@ -1,0 +1,681 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath, amsthm, amssymb, bm}
+\usepackage{cancel, tikz, graphicx, hyperref, enumitem}
+\usepackage{mathrsfs}
+\geometry{letterpaper}
+
+% BC's macros
+\newcommand{\paren}[1]{\left(#1\right)}
+\newcommand{\brk}[1]{\left[#1\right]}
+\renewcommand{\brace}[1]{\left\{#1\right\}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\ang}[1]{\left\langle#1\right\rangle}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dpd}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\comment}[1]{\qquad\text{#1}}
+\newcommand{\precomment}[1]{\text{#1}\qquad}
+\newcommand{\ms}[1]{\mathscr{#1}}
+
+\DeclareMathOperator{\DD}{D}
+
+\newcommand{\eps}{\varepsilon}
+
+\renewcommand{\d}[1]{\,d#1}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\newcommand{\Taxiom}[1]{T$_\text{#1}$}
+
+\newcommand{\defn}[2]{\textsc{\underline{Definition (#1)}:}\begin{quote} #2\end{quote}}
+\newenvironment{briefproof}{\footnotesize\begin{flushleft}\textit{Brief proof:}\par\begin{tabular}{l|p{0.8\textwidth}}$\quad$&}{\\
+\end{tabular}\end{flushleft}}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+% Fix up \left and \right spacings
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+% Random other settings
+\setenumerate[1]{label=\textbf{(\arabic*)}}
+
+% Begin document
+\title{MAT 365 -- List of All the Things!}
+\author{Byung-Cheol Cho}
+\date{\today}
+
+\allowdisplaybreaks
+\begin{document}
+\maketitle
+
+% ================== %
+% Topological spaces %
+% ================== %
+\section{Topological spaces}
+    \begin{enumerate}
+    %
+    \item \textbf{Definitions of topology and topological space:}
+
+    \defn{topology}{Given a set $X$, a topology is a collection $\ms{T}$ of subsets of $X$ with the following properties:
+    \begin{enumerate}
+    \item $\ms{T}$ contains both $\emptyset$ and $X$
+    \item The union of arbitrary elements of $\ms{T}$ is in $\ms{T}$
+    \item The intersection of finitely many elements of $\ms{T}$ is in $\ms{T}$
+    \end{enumerate}
+    \textit{Simply put, closed under arbitrary unions and finite intersections.}
+
+    \textit{When checking if collection of subsets is a topology, the finite intersections property can be checked by induction, but the infinite unions property cannot. We can use indexed families of sets\footnote{See Munkres p. 79} or other methods that can account for (possibly uncountably) infinite sets.}
+    }
+    \defn{topological space}{A set $X$ for which $\ms{T}$ has been specified (i.e. $(X, \ms{T})$).}
+    \defn{open set}{A member of $\ms{T}$.}
+    \textit{Motivation: a generalization of open sets from structures like $\RR$.}
+    %
+    \item \textbf{Definitions of fineness and coarseness:}
+
+    \defn{finer}{Given a set $X$ and two topologies $\ms{T}$ and $\ms{T'}$ on $X$, $\ms{T'}$ is finer than $\ms{T}$ if $\ms{T'}\supset\ms{T}$.\par\textit{Simply put, elements of topologies are like rocks, and a finer topology has more and finer rocks. It contains the same elements, but also has more.}}
+    The terms \textsc{coarser}, \textsc{strictly finer}, and \textsc{strictly coarser} are similarly defined.
+
+    Fineness and coarseness are partial orders, so not all topologies can be compared. If they can, we say they are \textsc{comparable}.
+    %
+    \end{enumerate}
+    \subsection{Basis for a topology}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{Definition of basis:}
+
+        \defn{basis}{A collection $\ms{B}$ of subsets of $X$ (\textsc{basis elements}) such that:
+        \begin{enumerate}
+        \item $X$ is covered\footnote{If a set $A$ is `covered' by a collection, every point in $A$ is contained in sets in the collection, but the union does not exceed $A$. Like tiling but with overlaps permitted} by basis elements\footnote{For all $x\in X$, there exists $B\in\ms{B}$ s.t. $x\in B$}
+        \item Every intersection between basis elements is also covered by basis elements\footnote{For all $B_1, B_2\in\ms B$ and $x\in B_1\cap B_2$, there exists $B_3$ such that $x\in B_3 \subset B_1\cap B_2$}
+        \end{enumerate}
+        }
+        \textit{Motivation: it is unfeasible to specify every open set in $\ms{T}$, so we define the topology using a smaller number of sets.}
+
+        \textit{Intuition: the basis elements are like the `building blocks' of the topology: you can't get smaller open sets than the basis elements. Fineness then arises out of comparing whether the building blocks of one topology can be used to construct the building blocks of the other topology.}
+
+        \textit{Note: a topological basis is very different from a linear algebraic basis.}
+        %
+        \item \textbf{Generating (inducing) a topology from a basis:}
+
+        \defn{topology generated from a basis}{A subset $U$ of $X$ is open if for every $x\in U$, there is a basis element $B$ such that $x\in B \subset U$.}
+
+        \textit{Note: the basis elements are automatically defined as open sets.}
+
+        \textit{Important: for a given basis $\ms{B}$, there is a unique topology $\ms{T}$ such that $\ms{B}$ is a basis for $\ms{T}$. This is the same as the generated topology.}
+        %
+        \item\textbf{Properties of a basis for a topology:}
+        \begin{enumerate}
+        \item (Open sets as unions of basis elements) If $\ms{B}$ is a basis for $\ms{T}$, then $\ms{T}$ is \textit{equal} to the collection of all arbitrary unions of basis elements.
+
+        \textit{Simply put, every open set is some arbitrary combination of basis elements. Alternatively, every open set is covered by basis elements.}
+        \begin{briefproof}
+        Basis elements are in $\ms{T}$, and arbitrary unions are also in $\ms{T}$. Conversely, all points in every open set $U$ are also contained in basis elements that are fully contained in $U$. These basis elements combined form $U$.
+        \end{briefproof}
+
+        \item (Sufficient condition for basis) If $\ms{C}$ is a collection of open sets such that for all points $x$ in all open sets $U$, there exists $C\in\ms{C}$ such that $x\in C\subset U$, then $\ms{C}$ is a basis.
+
+        \textit{Simply put, if a collection covers all open sets, it is a basis.}
+
+        \item (Fineness by comparing bases) If $\ms{B}, \ms{B'}$ are bases for topologies $\ms{T}, \ms{T'}$, then the following are equivalent:
+        \begin{enumerate}
+        \item $\ms{T'}$ is finer than $\ms{T}$
+        \item For each $x\in X$ and each basis element in $\ms{B}$ containing $x$, there is a basis element $B'\in\ms{B'}$ such that $x\in B' \subset B$.
+
+        \textit{Simply put, each basis element in $\ms{B}$ is covered by basis elements in $\ms{B'}$. Smaller basis elements produce a finer topology.}
+        \end{enumerate}
+        \end{enumerate}
+        %
+        \end{enumerate}
+    \subsection{Subbasis for a topology}
+        \begin{enumerate}[resume]
+        \item \textbf{Definition of subbasis:}
+
+        \defn{subbasis}{A collection of subsets of $X$ whose union equals $X$.\par\textit{That is, a collection that covers $X$.}}
+        \defn{topology generated from a subbasis $\ms{S}$}{The collection of all unions of finite intersections of elements of $\ms{S}$.\par\textit{That is, form a basis by taking all finite intersections of $\ms{S}$, then generate a topology from that basis.}}
+        \end{enumerate}
+    \subsection{Closed sets and limit points}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{Definition of closed sets:} 
+
+        \defn{closed set}{A subset $A$ of $X$ is closed in $A$ if $X-A$ is open in $X$.}
+        %
+        \item \textbf{Properties of closed sets:}
+        \begin{enumerate}
+        \item (Closed sets in a topology) The following conditions hold for $X$ a topological space:
+        \begin{enumerate}
+        \item $\emptyset$ and $X$ are closed
+        \item Arbitrary intersections of closed sets are closed
+        \item Finite unions of closed sets are closed
+        \end{enumerate}
+        \textit{Note the difference with open sets (namely, the arbitrary and finite requirements).}
+
+        \item (Relationship to a subspace) Let $Y$ be a subspace of $X$. Then a set $A$ is closed in $Y$ if and only if it equals the intersection of a closed set of $X$ with $Y$.
+
+        \textit{In other words, intersection of a closed set with a subspace is closed in the subspace, and vice versa.}
+
+        \textit{Note: this is the same as with open sets.}
+        \item (Transitivity but cooler) Suppose $Y\subset X$ is closed and $A\subset Y$. Then $A$ is closed in $Y$ if and only if $A$ is closed in $X$.
+        \end{enumerate}
+        %
+        \item \textbf{Definition of interior and closure:}
+
+        \defn{interior}{The union of all open sets contained in $A \subset X$. It is denoted $\operatorname{Int}A$.
+
+        \textit{That is, it is the `largest' open set contained entirely within $A$.}}
+
+        \defn{closure}{The intersection of all closed sets containing $A\subset X$. It is denoted $\bar{A}$.
+
+        \textit{That is, it is the `smallest' closed set entirely containing $A$.}}
+
+        It is straightforward that $\operatorname{Int}A \subset A \subset \bar{A}$.
+        %
+        \item \textbf{Properties of closure:}
+        \begin{enumerate}
+        \item (Relationship to a subspace) Let $Y$ be a subspace of $X$, and let $A$ be a subset of $Y$ ($A\subset Y \subset X$). Then the closure of $A$ in $Y$ equals $\bar{A}\cap Y$.
+
+        \textit{In other words, intersection of a closure with a subspace is the closure in the subspace.}
+        \item (Closure and neighborhoods) $x\in\bar{A}$ if and only if every neighborhood of $x$ intersects $A$.
+
+        \textit{In practice: `can you find an open set around $x$ that doesn't intersect $A$ (i.e. isolates $x$ from $A$?'}
+
+        (Relating to basis elements) Let $X$ have basis $\ms{B}$. Then $x\in\bar{A}$ if and only if every $B\in\ms{B}$ containing $x$ intersects $A$.
+
+        \item (Closure and closed sets) A set is closed if and only if its closure is itself ($\bar{A} = A$).
+        \end{enumerate}
+        %
+        \item \textbf{Definition of limit point:}
+
+        \defn{limit point}{$x$ is a limit point of $A$ if each neighborhood of $x$ intersects $A-x$.}
+
+        \textsc{\underline{Equivalent definition}:} $x$ is a limit point if and only if $x\in\overline{A-x}$.
+
+        The set of limit points of $A$ is denoted $A'$.
+        %
+        \item \textbf{Closure and limit points:}
+
+        $\bar{A} = A\cup A'$.
+        %
+        \end{enumerate}
+        \subsubsection{Convergent sequences}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{Definition of convergent sequence:}
+
+        \defn{convergent sequence}{A sequence $x_1$, $x_2$, \dots, $x_n$, \dots converges to $y$ if for all neighborhoods $U$ of $y$, there is $N$ such that $x_i \in U$ for all $i\ge N$.
+
+        \textit{Simply put, the sequence is eventually always in $U$.}}
+        %
+        \end{enumerate}
+    \subsection{Special topologies}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{The indiscrete topology:}
+
+        \defn{indiscrete/trivial topology}{Given a set $X$, the indiscrete topology is $\{X, \emptyset\}$
+
+        \textit{The indiscrete topology is the coarsest topology on $X$.}}
+        %
+        \item \textbf{The discrete topology:}
+
+        \defn{discrete topology}{Given a set $X$, the discrete topology consists of all subsets of $X$.
+
+        \textit{The discrete topology is the finest topology on $X$.}}
+
+        The discrete topology can be generated by the basis $\{\{x\}\,|\,x\in X\}$.
+        %
+        \item \textbf{The standard topology on $\RR$:}
+
+        \defn{standard topology on $\RR$}{The topology generated by basis elements of the form $(a, b) \subset\RR$.}
+        %
+        \item \textbf{The lower limit topology on $\RR$:}
+
+        \defn{lower limit topology}{The topology generated by basis elements of the form $[a, b)\subset\RR$.}
+
+        The lower limit topology is strictly finer than the standard topology.
+        %
+        \item \textbf{The $K$-topology on $\RR$:}
+
+        \defn{$K$-topology on $\RR$}{The topology generated by basis elements of the form $(a, b)\subset\RR$ as well as $(a, b) - K$, where $K = \{\tfrac{1}{n}\,|\,n\in\ZZ_+\}$.}
+
+        The $K$-topology is strictly finer than the standard topology but incomparable with the lower limit topology.
+        %
+        \item \textbf{The finite complement topology:}
+
+        \defn{finite complement topology}{Given a set $X$, the finite complement topology consists of all subsets $U$ such that $X-U$ is either finite or all of $X$.}
+        %
+        \end{enumerate}
+    \subsection{Particularly special topologies}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{The order topology:}
+
+        \defn{order topology}{Given a set $X$ with a simple order $<$, the order topology is generated by basis elements of the following forms:
+        \begin{enumerate}
+        \item All open intervals $(a, b)$ in $X$
+        \item If $X$ has a smallest element $a_0$, all intervals of the form $[a_0, b)$
+        \item If $X$ has a largest element $b_0$, all intervals of the form $(a, b_0]$.
+        \end{enumerate}
+        }
+        %
+        \item \textbf{The product topology:}
+
+        \defn{product topology}{Given topological spaces $X$ and $Y$, the product topology $X\times Y$\footnote{Not technically a Cartesian product} is generated by basis elements of the form $U\times V$ where $U\in X$ and $V\in Y$.}
+        %
+        \item \textbf{The subspace topology:}
+
+        \defn{subspace topology}{Let $X$ be a set with topology $\ms{T}$. If $Y\subset X$, the subspace topology on $Y$ is $\ms{T}_Y = \{Y\cap U\,|\ U\in\ms{T}\}$.
+
+        \textit{That is, the subspace topology has the intersections between the open sets and $Y$ as its open sets.}
+
+        \textit{Note: we say that $Y$ inherits its topology from $X$.}}
+        %
+        \item \textbf{Properties of the order, product and subspace topologies:}
+        \begin{enumerate}
+        \item (Basis for the product topology) If $\ms{B}$ is a basis for $X$ and $\ms{C}$ is a basis for $Y$, then the collection \[\ms{D} = \{B\times C\,|\, B\in\ms{B}, C\in\ms{C}\}\] is a basis for $X\times Y$.
+        \item (Basis for the subspace topology) If $\ms{B}$ is a basis for $X$, then the collection \[\ms{B}_Y = \{B \cap Y\,|\, B\in\ms{B}\}\] is a basis for $\ms{T}_Y$.
+
+        \textit{That is, we can take the intersections of each of the basis elements with $Y$ to form a basis for the subspace topology.}
+        \item (Transitivity of openness) Let $Y$ be a subspace of $X$. If $U$ is open in $Y$ and $Y$ is open in $X$, then $U$ is open in $X$.
+
+        \item (Relationship between product and subspace topologies) Let $A$ be a subspace of $X$ and $B$ a subspace of $Y$. Then the product topology on $A\times B$ is the \underline{same as} the subspace topology on $A\times B$ as a subspace of $X\times Y$.
+
+        \item (Subspace topology is always finer than order topology) Given a set $A \subset X$ where $A$ inherits its order relationship from $X$, the topology inherited by $A$ as a subspace of the order topology on $X$ is \underline{finer} than the order topology on $A$.
+
+        \item (Equality of order and subspace topologies) Let $X$ be an ordered set in the order topology, and let $Y \subset X$ be convex (i.e. for all $a < b$, $(a, b)\subset Y$). Then the order topology on $Y$ is the same as the subspace topology that $Y$ inherits from $X$.
+
+        \textit{Counterexample for non-convex subsets: $X = \RR$, $Y = [0,1] \cup (2, 3)$; consider $(0, 1]$.}
+        \end{enumerate}
+        %
+        \end{enumerate}
+    \subsection{The (general) product topology}
+        \label{sec:ProdTopo}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{Definition of $\bm{J}$-tuple:}
+
+        \defn{$J$-tuple}{Let $J$ be an index set. For every $\alpha\in J$, we have a set $X_\alpha$. The $J$-tuple is the Cartesian product of this indexed family of sets \[\ms{P} = \prod_{\alpha\in J}{X_\alpha}.\]
+
+        \textit{If all $X_\alpha$ are the same, each element $\underline{x}$ of $\ms{P}$ is basically a function from $J$ to $X_\alpha$.}}
+
+        We can give this set one of two topologies, constructed in subtly different ways.
+        %
+        \item \textbf{Definitions of the box and product topologies:}
+
+        \defn{box topology}{Define the topology using a basis. The basis elements are of the form \[\prod_{\alpha\in J}{U_\alpha}\] where for each $\alpha$, $U_\alpha$ is an open set in $X_\alpha$.}
+
+        \defn{product topology}{Define the topology using a subbasis. The subbasis elements are the preimages of projection maps. That is, they are of the form \[\pi_{\alpha}^{-1}\paren{U_\alpha}.\] Then the basis is a finite product of $U_\alpha$ along with an infinite product of $X_\alpha$, in some arrangement.}
+
+        For finite products, the two topologies are identical. However, the finite intersection axiom of topological spaces (and, as a result, of basis elements) means that the product topology is a much more natural topology for the product, and many things go wrong with the box topology.
+        %
+        \item \textbf{Properties of the box and product topologies:}
+        \begin{enumerate}
+        \item (Box topology is finer than product topology)
+        \item (Generating box and product topologies with basis) Let $B_\alpha$ be a basis element for $X_\alpha$. Sets of the form $\prod_{\alpha\in J} B_\alpha$ can serve as basis elements for the box topology. Sets of the form $\prod_{\alpha\in J} B'_\alpha$ where $B'_\alpha = B_\alpha$ for finitely many $\alpha$ and $B'_\alpha = X_\alpha$ for all other $\alpha$ can serve as basis elements for the product topology.
+        \item (Box/product topology of subspaces is subspace of box/product topology) Let $A_\alpha$ be a subspace of $X_\alpha$. Then $\prod_{\alpha\in J} A_\alpha$ is a subspace of $\prod_{\alpha\in J} X_\alpha$ if both have the box topology, or if both have the product topology.
+        \item (Box/product of Hausdorff topologies is Hausdorff) If each $X_\alpha$ is Hausdorff, then $\prod_{\alpha\in J} X_\alpha$ is Hausdorff in both the box and product topologies.
+        \item (Box/product of closures is closure of box/product) Let $A_\alpha \subset X_\alpha$ be subspaces. If $\prod_{\alpha\in J} X_\alpha$ is in either the box or product topology, then \[\prod_{\alpha\in J} \bar{A}_\alpha = \overline{\prod_{\alpha\in J} A_\alpha}.\]
+        \end{enumerate}
+        %
+        \end{enumerate}
+    \subsection{Metric topology}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{Definitions of metric and metric topology:}
+
+        \defn{metric}{Given a set $X$, a metric $d:X^2\to[0, \infty)\subset\RR$ is a function that satisfies the following axioms:
+        \begin{enumerate}
+        \item $d(x, x) = 0$
+        \item $d(x, y) = d(y, x)$
+        \item If $x\ne y$, $d(x, y) > 0$
+        \item (Triangle inequality) $d(x, y) + d(y, w) \ge d(x, w)$
+        \end{enumerate}
+        }
+
+        \defn{metric topology}{Given a set $X$ equipped with a metric, the metric topology on $X$ is defined using the basis consisting of $\eps$-balls: \[B(x, \eps) = \{y\in X \,|\, d(x, y) < \eps\}.\]}
+        %
+        \item \textbf{Definition of metrizable:}
+
+        \defn{metrizable}{A topological space is metrizable if there exists a metric that generates the same topology.
+
+        \textit{Note: The metric is not necessarily unique.}}
+        %
+        \item \textbf{Properties of metric and metrizable spaces}
+        \begin{enumerate}
+            \item (Metrizable implies Hausdorff) If $X$ is metrizable, then $X$ is Hausdorff.
+            \item (Subspace of a metric topology is a metric topology) If $A$ is a subspace of a topological space $X$ and $d$ is a metric for $X$, $d' : A\times A' : A\times A \to \RR$ is a metric for $A$.
+            \item (Countable product of metrizable spaces is metrizable)
+            \item (Limit points are points of convergence in metrizable spaces) If $X$ is metrizable and $A\subset X$, then $x\in\bar A$ if and only if there exists some sequence $x_i\in A$ such that $x_i$ converges to $x$.
+            \item (Box topology is not metrizable)
+            \item (Product topology is metrizable)
+        \end{enumerate}
+        %
+        \item \textbf{Definition of uniform metric and topology:}
+
+        \defn{uniform metric}{Given a topological space $X^J$ and points $\mathbf{x}$ and $\mathbf{y}$ in $X^J$, the uniform metric is \[\bar\rho(\mathbf{x}, \mathbf{y}) = \sup_{\alpha\in J}\{\bar d(x_\alpha, y_\alpha), 1\} = \sup_{\alpha\in J}\{\min\{d(x_\alpha, y_\alpha), 1\}\}\]}
+
+        \defn{uniform topology}{The metric topology generated using the uniform metric.}
+        %
+        \item \textbf{Comparisons of the product, uniform and box topologies on $\RR^\omega$:}
+
+        From finest to coarsest: box, uniform, product
+
+        To generate the product topology with a metric, use the metric given by \[D(\mathbf{x}, \mathbf{y}) = \sup_{i\in\ZZ_+}\paren{\frac{\bar d(x_i, y_i)}{i}}\]
+        %
+        \end{enumerate}
+    \subsection{Quotient topology}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{Definition of quotient topology:}
+
+        \defn{quotient topology}{Given a topological space $X$ and a surjective function $f:X\to Y$, define the quotient topology as follows: a set $V\subset Y$ is open if $f^{-1}(V)$ is open in $X$.
+
+        $f$ is the \textsc{quotient map}.
+
+        \textit{Motivation: essentially `gluing' some points to each other (see alternate definition)}}
+        %
+        \item \textbf{Properties of the quotient topology:}
+        \begin{enumerate}
+            \item ($f$ is forced to be continuous) $f:X\to Y$ is, by definition, continuous.
+            \item (Finest topology on $Y$ such that $f$ is continuous) The quotient topology on $Y$ is the finest topology on $Y$ such that $f:X\to Y$ is continuous.
+
+            \textit{That is, it has the largest number of open sets such that $f$ is continuous.}
+            \item (Alternate definition of quotient topology) Given a set $X$, define an equivalence relation $\sim$ on $X$ and group points in $X$ into equivalence classes (equivalent points will be glued together and become one point). Define a new set $Y = X/\sim$ so that each equivalent class is one point. Then $Y$ is the quotient topology.
+
+            \textit{Relation to original definition: $f$ is surjective, so $x\sim x'$ if $f(x) = f(x')$. That is, two points are equivalent if their images are the same.}
+            \item (Composition of quotient topologies) If $Y$ is the quotient topology defined from $X$ by $f$ and $W$ is the quotient topology defined from $Y$ by $g$, then $W$ is the same as the quotient topology defined from $X$ by $g\circ f$.
+        \end{enumerate}
+        %
+        \end{enumerate}
+    \subsection{Separation axioms}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{\Taxiom{1} and \Taxiom{2} axiom:}
+
+        \defn{\Taxiom{1} axiom}{A topological space $X$ the \Taxiom{1} axiom if every one-point set in $X$ is closed.
+
+        \textit{This excludes the indiscrete topology.}}
+
+        \defn{\Taxiom{2} axiom, Hausdorff space}{A topological space $X$ the \Taxiom{2} axiom if for every $x, y\in X$ ($x\ne y$) then there exist $U, V\in X$ such that $x\in U$, $y\in V$ and $U\cap V = \emptyset$.
+
+        \textit{Simply put, there are open sets $U$, $V$ that can isolate $x$ and $y$ from each other.}}
+        %
+        \item \textbf{Properties of \Taxiom{1} and \Taxiom{2} spaces:}
+        \begin{enumerate}
+        \item (\Taxiom{2} is stronger than \Taxiom{1}) That is, \Taxiom{2} implies \Taxiom{1}.
+        \item A finite topology satisfying \Taxiom{1} is the discrete topology (and thus implies \Taxiom{1} in this special case).
+        \item Suppose $X$ is \Taxiom{2} (i.e. $X$ is Hausdorff). Then a sequence can converge to at most one point.
+        \item If $X$ and $Y$ are \Taxiom{2}, then the product is also \Taxiom{2}.
+        \item If $X$ is \Taxiom{2} and $Y\subset X$, then $Y$ in the subspace topology is also \Taxiom{2}.
+        \item Order topologies are Hausdorff/\Taxiom{2}.
+        \end{enumerate}
+    %
+    \end{enumerate}
+
+% ==================== %
+% Continuous functions %
+% ==================== %
+\section{Continuous functions}
+    \begin{enumerate}[resume]
+    %
+    \item \textbf{Definition of continuous function, homeomorphism and topological imbedding:}
+
+    \defn{continuous function}{Given a function $f:X\to Y$, $f$ is continuous if for all open sets $U\subset Y$, the preimage $f^{-1}(U)$ is open in $X$.
+
+    \textit{The preimage is the set of all points such that their images are in $U$.}}
+
+    If $f$ is a bijection (i.e. it is both injective and surjective), we can define the inverse $f^{-1}$.
+
+    \defn{homeomorphism}{If $f:X\to Y$ is continuous and bijective and $f^{-1}:Y\to X$ is also continuous, then $f$ is a homeomorphism.
+
+    \textit{That is, $U$ maps to $f(U)$ and $f(U)$ maps back to $U$.}}
+
+    \textit{Topological spaces that are \textsc{homeomorphic} (i.e. there exists a homeomorphism between them) look somewhat similar: their open sets correspond according to bijective maps.}
+
+    \textit{There are multiple possible homeomorphisms between topological spaces.}
+
+    \defn{topological imbedding}{Let $f:X\to Y$ be continuous and injective; consider $Z=f(X)$ as a subspace of $Y$. Then $f':X\to Z$ is bijective; if $f'$ is a homeomorphism, then $f$ is a (topological) imbedding of $X$ in $Y$.}
+
+    \textit{See Munkres pp. 106-7 for examples.}
+    %
+    \item \textbf{Properties of continuous functions:}
+
+    \underline{Functions that we know are continuous}:
+    \begin{enumerate}
+    \item (Constant function is continuous) If $f:X\to Y$ is such that $f(x) = y_0$ ($y_0\in Y$) for all $x\in X$, $f$ is continuous.
+    \item (Inclusion function is continuous) Given a subspace $A\subset Y$, the function $f:A\to Y$ such that $f(a) = a$ for all $a\in A$ is continuous.
+    \item (Composition is continuous) Given continuous functions $f:X\to Y$ and $g:Y\to Z$, the map $g\circ f : X\to Z$ is continuous.
+    \item (Projection maps are continuous) Given a product topology $P = \prod_{\alpha\in J}(X_\alpha)$, the projection maps $\pi_\beta : \ms{P} \to X_\beta$ ($\pi_\beta((x_\alpha)_{\alpha\in J}) = x_\beta$) are continuous.
+    \item (Addition, subtraction, multiplication, quotient are continuous on the reals, as are those of continuous functions on $X\to \RR$) For continuous $f,g:X\to\RR$, $f+g, f-g, f\cdot g, f/g$ are continuous.
+
+    \textit{This is really the definition of the product topology (see Section~\ref{sec:ProdTopo})}
+    \end{enumerate}
+    \underline{Playing with domain and range}:
+    \begin{enumerate}[resume]
+    \item (Restricting domain preserves continuity) Given continuous $f:X\to Y$ and $A$ a subspace of $X$, $f|A : A\to Y$ is continuous.
+    \item (Restricting or expanding range preserves continuity) Let $f:X\to Y$ be continuous. \textit{Restricting range:} If $Y$ has $Z \supset f(X)$ as a subspace, then $f_1: X\to Z$ is continuous. \textit{Expanding range:} If $Y$ is a subspace of $Z$, then $f_2:X\to Z$ is continuous.
+
+    \item (Local continuity everywhere implies global continuity) If $X$ can be covered by open sets $U_\alpha$ and all $f|U_\alpha$ are continuous, then $f:X\to Y$ is continuous.
+    \end{enumerate}
+    \underline{Equivalence with conventional definitions}:
+    \begin{enumerate}[resume]
+    \item (Epsilon-delta definition on metrizable spaces) Let $f:X\to Y$ where $X$ and $Y$ are metrizable with metrics $d_X$ and $d_Y$. Then $f$ is continuous if for any $x\in X$ and any $\eps > 0$, there exists $\delta > 0$ such that \[d_X(x, y) < \delta \implies d_Y(f(x), f(y)) < \eps.\]
+    \item (Convergent sequence definition) Let $f:X\to Y$. If $f$ is continuous, $\implies$ for every sequence $x_n$ convergent to $x\in X$, the sequence $f(x_n)$ converges to $f(x)$. This also defines a continuous function if $X$ is metrizable.
+    \item (Uniform limit theorem: uniform convergence implies continuous) Let $f_n : X\to Y$ be a sequence of continuous functions from a topological space $X$ to metric space $Y$. If for every $\eps> 0$, there exists an integer $N$ such that \[d(f_n(x), f(x)) < \eps\] for all $n>N$ and all $x\in X$ (i.e. $(f_n)$ uniformly converges to $f$), then $f$ is continuous.
+    \end{enumerate}
+    \underline{Other important properties}:
+    \begin{enumerate}[resume]
+    \item (The pasting lemma) Write $X$ as $A\cup B$ where $A, B$ are closed in $X$. Given continuous $f:A\to Y$ and $g:B\to Y$ such that $f(x) = g(x)$ for all $x\in A \cap B$, the function \[h(x) = \begin{cases}f(x) & x\in A \\ g(x) & x\in B\end{cases}\] is continuous.
+    \item (Checking a function is continuous) We can show that:
+    \begin{enumerate}
+    \item $f^{-1}(U)$ is open for all open sets $U$
+    \item $f^{-1}(B)$ is open for all basis elements $B$
+    \item $f^{-1}(S)$ is open for all subbasis elements $S$
+    \end{enumerate}
+    \end{enumerate}
+    %
+    \item \textbf{Topologies and continuous functions:}
+    \begin{enumerate}
+        \item (On the product topology, a function is continuous iff all its component functions are continuous) Consider an index set $J$. For each $\alpha\in J$, define $f_\alpha : Y\to X_\alpha$. Consider $F:Y\to\prod_{\alpha\in J} X_\alpha$ \textit{in the product topology}. $F$ is continuous if and only if all the $f_\alpha$ are continuous.
+
+        \textit{$F(y)$ is a multiple-valued function where the $\alpha$th coordinate is $f_\alpha(y)$.}
+        \item (Relationship between fineness and continuity) Suppose $f:X\to Y$ is continuous. Then $f_1:X'\to Y$ is continuous if $X'$ is finer than $X$; $f_2:X \to Y'$ is continuous if $Y'$ is coarser than $Y$. The logical counterparts are not necessarily true (e.g. if $X'$ is coarser or $Y'$ is finer).
+        \item Almost by definition, the product topology is the coarsest possible topology where the projection maps are continuous.
+        \item The metric topology is the coarsest topology $X$ such that $d:X\times X\to \RR$ is continuous.
+    \end{enumerate}
+
+    Apart from functions whose components are eventually constant, it is impossible\footnote{Almost. It \textit{is} impossible if we assume the continuum hypothesis: \url{http://math.stackexchange.com/questions/1229704/request-for-an-example-of-a-continuous-map-relative-to-the-box-topology-on-mat}} to find any functions that are continuous in the box topology.
+
+    \textit{Example: $F:\RR\to\RR^\omega_\text{box}$ such that each $f_\alpha(t) = t$ is not continuous in the box topology!}
+    %
+    \end{enumerate}
+
+% ============================= %
+% Connectedness and compactness %
+% ============================= %
+\section{Connectedness and compactness}
+    \subsection{Connected spaces}
+        \begin{enumerate}[resume]
+        %
+        \item \textbf{Definition of separation and connected:}
+
+        \defn{separation}{A separation of a topological space $X$ is two open non-empty subsets $U$, $V$ such that $U$ and $V$ are disjoint and $U\cup V = X$.
+
+        \textit{Simply put, we divide $X$ into two non-empty open parts.}}
+
+        \defn{connected}{$X$ is connected if it does not admit a separation.}
+        %
+        \item \textbf{Definition of path-connected:}
+
+        \defn{path-connected}{$X$ is path-connected if for all points $x,y\in X$, there exists a continuous function $f:[0,1]\to X$ such that $f(0) = x$ and $f(1) = y$ ($[0,1]$ is a subspace of $\RR_\text{std}$).
+
+        \textit{Simply put, there is a continuous path in $X$ from $x$ to $y$.}}
+        %
+        \item \textbf{Definition of locally connected:}
+
+        \defn{locally connected}{A space $X$ is locally connected at $x$ if \textbf{for every} neighborhood $U$ of $x$, there is a connected neighborhood $V$ of $x$ such that $V\subset U$.
+
+        \textit{That is, every neighborhood is contained in a connected set.}}
+        %
+        \item \textbf{Properties of connected / path-connected / locally connected spaces:}
+        \begin{enumerate}
+            \item (Continuous image of a connected space is connected) If $X$ is connected and $f : X\to Y$ is continuous, then $f(X)$ is also connected.
+            \item (Product of two connected spaces is connected) If $X$ and $Y$ are connected, then $X\times Y$ is also connected. This generalizes to finite products by induction.
+            \item ($A$ is separation iff disjoint covering do not contain each other's limit points) Let $B$ and $C$ be disjoint (not necessarily open) subsets that cover some $A\subset X$. Then $B$ and $C$ are separations of $A$ if and only if $\bar B \cap C$ and $B\cup\bar C$ are empty.
+            \item (Connected subspace must be entirely contained in a separation.) If $Y\subset A$ is connected and $A$ has a separation $U,V$, then $Y\subset U$ or $Y\subset V$.
+            \item (Connected if between connected $A$ and $\bar A$) If $A$ is connected and $A\subset B\subset \bar A$, then $B$ is also connected.
+            \item (Union of connected subsets) If all $A_i$ are connected and they have a non-empty intersection, then the union is also connected.
+            \item (Connected iff the only clopen sets are $X$ and $\emptyset$) If a non-empty set $U\ne X$ is both open and closed, then $X$ is not connected.
+            \item (Intermediate value theorem) If $X$ is connected, $f:X\to\RR$ is continuous, and $f(x_0) = a$ and $f(x_1) = b$, then for all $c$ between $a$ and $b$, $f^{-1}(\{c\})$ is non-empty.
+            \item (Path-connected implies connected) If $X$ is path-connected, then $X$ is connected.
+            %\item (Closure of connected is connected) If $A$ is connected, then $\bar{A}$ is connected.
+            %\item (Locally connected iff )
+        \end{enumerate}
+        %
+        \item \textbf{Definition of connected components:}
+
+        \defn{connected components}{Let $x\sim y$ if there is a connected subset $A\subset X$ such that $x,a\in A$. Then each equivalence class is a connected component.
+
+        \textit{This partitions $X$ into a collection of `maximally connected subsets.'}
+
+        \textit{A similar definition applies to path-connected components.}}
+        %
+        \end{enumerate}
+    \subsection{Compact spaces}
+        \begin{enumerate}
+        %
+        \item \textbf{Definition of open cover and compact spaces:}
+
+        \defn{open cover}{An open cover of $X$ is a collection of open subsets $U_\alpha\subset X$ (for all $\alpha\in J$) that covers $X$: \[\bigcup_{\alpha\in J} U_\alpha = X.\]}
+
+        \defn{compact}{A topological space $X$ is compact if for all open covers of $X$, there is a finite subcover of $X$. That is, there are indices $\alpha_1, \dots, \alpha_n$ such that $U_{\alpha_1}\cup\cdots\cup U_{\alpha_n} = X$.}
+        %
+        \item \textbf{Properties of compact spaces:}
+        \begin{enumerate}
+            \item ($[0,1]$ is compact) The subspace $[0,1]\subset \RR_\text{std}$ is compact.
+            \item (Closed subspace of a compact space is compact)
+            \item (Compact subspace of a Hausdorff space is closed)
+            \item (Continuous image of compact space is compact) If $f:X\to Y$ is continuous and $X$ is compact, then $f(X)$ is compact.
+            \item (Continuous bijection from compact to Hausdorff is homeomorphism) If $f:X\to Y$ is bijective and continuous, and if $X$ is compact and $Y$ is Hausdorff, then $f$ is a homeomorphism.
+            \item (Finite product of compact spaces is compact)
+            \item 
+        \end{enumerate}
+        %
+        \item \textbf{Definition of local compactness:}
+
+        \defn{local compactness}{For every point $x\in X$, \textbf{there exists} an open set $U$ containing $x$ such that $U\subset C$ where $C$ is compact.
+
+        \textit{That is, there is some neighborhood contained in a compact set.}}
+        %
+        \item \textbf{One-point compactification:}
+
+        Suppose $X$ is locally compact and Hausdorff. Define a new point $p$ and include it in $Y$: $Y = X\cup \{p\}$. Let $Y$ have the following open sets:
+        \begin{enumerate}
+            \item all $U$ open in $X$ are open in $Y$;
+            \item all $(X-C)\cup\{p\}$ are open in $Y$ where $C$ is compact in $X$.
+        \end{enumerate}
+        Then $Y$ is compact and Hausdorff.
+        %
+        \end{enumerate}
+
+% ================================== %
+% Countability and separation axioms %
+% ================================== %
+\section{Countability and separation axioms}
+    \begin{enumerate}[resume]
+    %
+    \item \textbf{Definition of first countable:}
+
+    \defn{first countable}{A space $X$ is called first countable if for all $x\in X$, there is a countable collection of open sets $\ms{B}_x$ such that given any $U$ containing $x$, there is some $V\in\ms{B}_x$ such that $x\in V\subset U$.
+
+    \textit{That is, for every $x$, fix $x$ and find a sequence of sets $V_i$ such that for any $U$ around $x$, $U$ contains some $V_i$ containing $x$.}
+
+    \textit{Note: $\ms{B}_x$ is sort of like a `basis' -- there is some countable diminishing collection of sets such that $V$ can fit between $x$ and $U$.}}
+    %
+    \item \textbf{Definition of second countable:}
+
+    \defn{second countable}{A space $X$ is second countable if it has a countable basis.
+
+    \textit{Note: it suffices to simply find a countable basis.}}
+    %
+    \item \textbf{Additional definitions:}
+
+    \defn{everywhere dense}{A countable subset $A$ of $X$ is everywhere dense if $\bar{A} = X$.}
+
+    \defn{Lindel\"of space}{A space such that every open cover of $X$ has a countable subcover.}
+
+    Clearly, compactness implies Lindel\"of.
+    %
+    \item \textbf{Properties of first countable and second countable spaces:}
+    \begin{enumerate}
+        \item (Metric spaces are first countable)
+        \item (First countable implies points of convergence and points in the closure are the same) If $X$ is a first countable space and $A\subset X$, then $x\in \bar{A}$ if and only if there exists a sequence $x_n\in A$ such that $x_n$ converges to $x$.
+        \item (Second countable implies first countable)
+        \item (Subspaces of first/second countable are first/second countable)
+        \item (Product of two first/second countable spaces is first/second countable)
+        \item (Second countable implies Lindel\"of and there is a countable everywhere dense subset) If $X$ is second countable, then:
+        \begin{enumerate}
+            \item $X$ has a countable subset $A\subset X$ such that $\bar{A} = X$, and
+            \item Every open cover of $X$ has a countable subcover
+        \end{enumerate}
+        \item (Metric and everywhere dense countable subset exists implies second countable) If $X$ is a metric space and $X$ has an everywhere dense countable subset, then $X$ has a countable basis.
+        \item (Metric and Lindel\"of implies second countable) If $X$ is a metric space and $X$ is Lindel\"of, then $X$ has a countable basis.
+    \end{enumerate}
+    %
+    \item \textbf{Examples:}
+    \begin{enumerate}
+        \item $\RR$ in the finite complement topology and $\RR^\omega_\text{box}$ are not first countable
+        \item $\RR_l$, $\RR_K$ and $\RR_\text{discrete}$ are first countable
+        \item $\RR_\text{discrete}$, $\RR_l$ and $\RR^\omega_\text{uniform}$ are not second countable
+        \item $\RR_\text{std}$, $\RR^n_\text{std}$, $\RR^\omega_\text{product}$ are all second countable
+        \item (Lindel\"of and existence of countable everywhere dense subset are independent)
+        \begin{enumerate}
+            \item $\RR_l\times\RR_l$ is first countable and has an everywhere dense countable subset ($\QQ\times\QQ$) but it is not Lindel\"of.
+
+            \textit{Also illustrates that the product of two Lindel\"of spaces is not necessarily Lindel\"of.}
+
+            \item The ordered square $I_0^2$ is first countable and compact hence Lindel\"of. However, it has no everywhere dense countable subset.
+
+            \textit{Also implies that the ordered square is not metrizable}
+        \end{enumerate}
+    \end{enumerate}
+    %
+    \item \textbf{Definition of regular and normal spaces:}
+
+    \defn{regular}{A space $X$ is \Taxiom{3} (i.e. regular) if: (1) the 1-point sets are closed, and (2) for all $a\in X$ and a closed set $B\subset X$ not containing $a$, there are disjoint open sets $U$ and $V$ such that $a\in U$ and $B\subset V$.}
+
+    \defn{normal}{A space $X$ is \Taxiom{4} (i.e. normal) if: (1) the 1-point sets are closed, and (2) for all closed disjoint subsets $A$ and $B$ of $X$, there exist disjoint open sets $U$ and $V$ such that $A\in U$ and $B\in V$.}
+    %
+    \item \textbf{Properties of regular and normal spaces:}
+    \begin{enumerate}
+        \item (Normal implies regular)
+        \item (Regular implies Hausdorff)
+        \item (Metric implies normal)
+    \end{enumerate}
+    %
+    \end{enumerate}
+
+% ====================== %
+% Differential equations %
+% ====================== %
+\section{Differential equations}
+\begin{enumerate}[resume]
+%
+\item \textbf{Definition and properties of the adjacency matrix:}
+
+\defn{blah}{lol}
+%
+\end{enumerate}
+
+\end{document}
