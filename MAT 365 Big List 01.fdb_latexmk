@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1448648955 "MAT 365 Big List 01.tex" "MAT 365 Big List 01.pdf" "MAT 365 Big List 01" 1448648956
+["pdflatex"] 1448651575 "MAT 365 Big List 01.tex" "MAT 365 Big List 01.pdf" "MAT 365 Big List 01" 1448651576
   "/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty" 1303254447 8237 52810bdb4db2270e717422560a104aea ""
@@ -116,11 +116,11 @@
   "/usr/local/texlive/2015/texmf-dist/tex/latex/tools/bm.sty" 1428932888 11958 868abf06896ae48c2db3b4ddf4ac819a ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/xcolor/xcolor.sty" 1169481954 55224 a43bab84e0ac5e6efcaf9a98bde73a94 ""
-  "MAT 365 Big List 01.aux" 1448648955 2679 35bba013a795c93e3981ce14a2c3ed06 ""
-  "MAT 365 Big List 01.out" 1448648955 1265 6a3f5f2f66192e01cb57a184c5015e87 ""
-  "MAT 365 Big List 01.tex" 1448648950 46293 bbaf014163a776dfe0b639628c096f4b ""
+  "MAT 365 Big List 01.aux" 1448651575 3068 7991a0fd173db3e8d72b7ae7cefed028 ""
+  "MAT 365 Big List 01.out" 1448651575 1518 5b04d99afa90b5098f080440c41e8405 ""
+  "MAT 365 Big List 01.tex" 1448651574 47541 27a2ac7ef0cbc650e5cb48165efa9102 ""
   (generated)
-  "MAT 365 Big List 01.pdf"
   "MAT 365 Big List 01.log"
   "MAT 365 Big List 01.out"
   "MAT 365 Big List 01.aux"
+  "MAT 365 Big List 01.pdf"
