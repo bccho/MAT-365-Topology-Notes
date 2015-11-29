@@ -727,31 +727,106 @@
 % Algebraic topology %
 % ================== %
 \section{Algebraic topology}
-    \subsection{Homotopy}
-        \begin{enumerate}[resume]
-        %
-        \item \textbf{Definition and properties of the adjacency matrix:}
-
-            \defn{blah}{lol}
-        %
-        \end{enumerate}
     \subsection{Fundamental group}
         \begin{enumerate}[resume]
         %
-        \item \textbf{Definition and properties of the adjacency matrix:}
+        \item \textbf{Definition of homotopy and path homotopy:}
 
-            \defn{blah}{lol}
+            \defn{homotopy}{Given spaces $X$ and $Y$ and continuous functions $f,g:X\to Y$, a homotopy between $f$ and $g$ is a continuous $H:X\times[0,1]\to Y$ such that $H(x,0) = f(x)$ and $H(x,1) = g(1)$ for all $x$.}
+
+            \defn{path homotopy}{Given continuous paths $f,g:[0,1]\to Y$, a path homotopy between $f$ and $g$ is a continuous function $H:[0,1]\times[0,1]\to Y$ such that $H(s,0) = f(s)$, $H(s,1) = g(s)$ for all $s\in[0,1]$, and $H(0,t) = y_0$ and $H(1,t) = y_1$ for all $t\in[0,1]$.}
+
+            \textit{Both homotopy and path homotopy can define an equivalence relation; but note one important difference -- path homotopy requires the two end points to be fixed.}
+        %
+        \item \textbf{Definition of the fundamental group:}
+
+            Define the product (denoted $*$) of two paths to be the path where the two ends are `glued together'. Products are associative and not necessarily commutative.
+
+            \defn{fundamental group}{The fundamental group of a space $X$, relative to the \textsc{base point} $x_0\in X$, is the group consisting of loops (paths that begin and end at the same point $x_0$), modulo path homotopy. It is denoted $\pi_1(X, x_0)$.
+
+            \textit{That is, the group elements, $[f]$, are equivalence classes according to path homotopy.}
+
+            Identity: the equivalence class of the constant path $e_{x_0} : [0,1]\to X$ where $e_{x_0}(t) = x_0 \in X$.
+
+            Inverse elements: the path traced in reverse, denoted $[\bar f]$.}
+        %
+        \item \textbf{Definition of simply connected:}
+
+            \defn{simply connected}{A space $X$ is simply connected if it is path-connected and $\pi_1(X,x_0)$ is the trivial (one-element) group for some $x_0\in X$. This is denoted $\pi_1(X,x_0) = 0$
+
+            \textit{This implies $\pi_1(X,x)=0$ for every $x\in X$.}}
+        %
+        \item \textbf{Properties of the fundamental group:}
+            \begin{enumerate}
+            \item (Paths induce isomorphisms) If $\alpha$ is a path in $X$ from $x_0$ to $x_1$, the map $\hat\alpha : \pi_1(X,x_0)\to \pi_1(X,x_1)$ where $\hat\alpha([f]) = [\bar\alpha]*[f]*[\alpha]$, is a group isomorphism taking elements in $\pi_1(X,x_0)$ to elements in $\pi_1(X,x_1)$.
+            \item (Path-conected implies isomorphic) If $X$ is path-connected, then the fundamental groups of $X$ for any base points are isomorphic.
+            \item (Homeomorphism induce isomorphisms) If $h:(X,x_0) \to (Y,y_0)$ is a homeomorphism, then $h_* : \pi_1(X,x_0)\to\pi_1(Y,y_0)$, where $h_*([f]) = [h\circ f]$, is an isomorphism.
+            \item (Products of fundamental groups) Given two spaces $X$, $Y$ and their cartesian product $X\times Y$, we have $\pi_1(X\times Y, x_0\times y_0) = \pi_1(X,x_0) \times \pi_1(Y,y_0)$, where $(g_1,h_1)\cdot(g_2,h_2) = (g_1\cdot g_2, h_1\cdot h_2)$.
+            \end{enumerate}
+        %
+        %\item Induced homomorphisms
         %
         \end{enumerate}
+        \subsubsection{Computing fundamental groups}
+            \begin{enumerate}[resume]
+            %
+            \item \textbf{Some simple examples:}
+                \begin{enumerate}
+                \item $\pi_1(\RR^n) = 0$ (trivial one-element group)
+                \item Unit ball: $\pi_1(B^n) = 0$ (trivial group)
+                \item Punctured plane: $\pi_1(\RR^2\smallsetminus\{0\}) \cong \ZZ$ (infinite cyclic group)
+                \end{enumerate}
+            %
+            \item \textbf{Definition of covering:}
+
+                \defn{evenly covered}{Given a continuous surjective map $p:E\to B$, an open set $U\subset B$ is evenly covered by $p$ if the preimage $p^{-1}(U)$ consists of disjoint open sets $V_\alpha\subset E$ such that each $V_\alpha$ is homeomorphic to $B$ by a restriction of $p$.
+
+                The collection $\{V_\alpha\}_\alpha$ is a partition into \textsc{slices}.}
+
+                \defn{covering map}{Given continuous surjective $p:E\to B$, $p$ is called a covering map of $B$ if for every $b\in B$, $b$ has a neighborhood $U$ that is evenly covered by $p$.
+
+                $E$ is called a \textsc{covering space} of $B$.}
+            %
+            \item \textbf{The fundamental group of the circle:}
+
+                The fundamental group of the circle is isomorphic to $\ZZ$.
+
+                % todo: brief proof
+            %
+            \end{enumerate}
     \subsection{Retractions and fixed points}
         \begin{enumerate}[resume]
         %
-        \item \textbf{Definition and properties of the adjacency matrix:}
+        \item \textbf{Definition of retraction:}
 
-            \defn{blah}{lol}
+            \defn{retraction}{Given $A\subset X$, a retraction of $X$ onto $A$ is a continuous map $r:X\to A$ such that $r(a)=a$ for all $a\in A$ (that is, $r|A$ is the identity map of $A$).
+
+            \textit{That is, every point not already in $A$ is mapped somewhere into $A$.}}
+        %
+        \item \textbf{Properties of retractions:}
+            \begin{enumerate}
+            \item (Inclusion homomorphism is injective) If $A$ is a retract of $X$, then the inclusion map $j:A\to X$ induces an injective homomorphism $j_* : \pi_1(A,a) \to pi_1(X,a)$.
+            % todo: should we change the structure so that items from here on are put into a different heading? "unit circle, unit disc and punctured plane" or something similar
+            \item (No-retraction theorem) There is no retraction of $B^2$ onto $S^1$.
+                \begin{briefproof}
+                A retraction should induce an injective homomorphism, but a map $j_* : \ZZ \to \{0\}$ cannot be injective.
+                \end{briefproof}
+            \item (Relation to ...) Let $h:S^1\to X$ be a continuous map. Then the following conditions are equivalent: % todo: what does this theorem actually mean/how does it relate to anything? Should it be in this section? Also change "Relation to ..."
+                \begin{enumerate}
+                \item $h$ is nulhomotopic (i.e. homotopic to constant map)
+                \item $h$ extends to a continuous map $k:B^2\to X$ (i.e. continuous extension of domain to disc possible)
+                \item $h_*$ is the trivial homomorphism of fundamental groups (i.e. image is the identity element)
+                \end{enumerate}
+            \item (Circle to punctured plane) The inclusion map $j : S^1 \to \RR^2\smallsetminus 0$ is not nulhomotopic. The identity map $i:S^1\to S^1$ is not nulhomotopic.
+            \end{enumerate}
+        %
+        \item \textbf{Brouwer fixed-point theorem for the disc:}
+
+            If $f:B^2\to B^2$ is continuous, then there exists a point $x\in B^2$ such that $f(x) = x$.
+
+            \textit{That is, a continuous function on the disc must have a fixed point.}
         %
         \end{enumerate}
-    \subsection{}
 
 % ====================== %
 % Differential equations %
