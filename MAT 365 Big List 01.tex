@@ -823,9 +823,21 @@
 
             \textit{That is, every point not already in $A$ is mapped somewhere into $A$.}}
         %
+        \item \textbf{Definition of strong deformation retraction:}
+
+            \defn{(strong) deformation retraction}{A retraction $r$ is a (strong) deformation retraction if there exists a continuous function $H : X\times[0,1]\to X$ such that:
+                \begin{enumerate}
+                \item $H(x,0) = x$ for all $x\in X$
+                \item $H(x,1) = r(x)$ for all $x\in X$ (i.e. an interpolation from $i_X(x)$ to $r(x)$)
+                \item ($H(a,t) = a$ for all $a\in A$ and $t\in [0,1]$ (i.e. points in $A$ do not move))
+                \end{enumerate}
+                Conditions (a) and (b) define a deformation retraction; condition (c) in conjunction defines a strong deformation retraction.}
+        %
         \item \textbf{Properties of retractions:}
             \begin{enumerate}
             \item (Inclusion homomorphism is injective) If $A$ is a retract of $X$, then the inclusion map $j:A\to X$ induces an injective homomorphism $j_* : \pi_1(A,a) \to pi_1(X,a)$.
+            \item (Strong deformation retraction is sufficient for isomorphism) If $r$ is a strong deformation retraction, then both $r_* : \pi_1(X, x_0) \to \pi_1(A, x_0)$ and $\iota_* : \pi_1(A, x_0) \to \pi_1(X, x_0)$ are isomorphisms.
+
             % todo: should we change the structure so that items from here on are put into a different heading? "unit circle, unit disc and punctured plane" or something similar
             \item (No-retraction theorem) There is no retraction of $B^2$ onto $S^1$.
                 \begin{briefproof}
