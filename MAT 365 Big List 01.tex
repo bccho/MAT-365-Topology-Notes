@@ -732,8 +732,44 @@
         \begin{enumerate}[resume]
         %
         \item \textbf{Definition of group:}
+
+            \defn{group}{A group is a set with some operation (written additively or multiplicatively) where (1) the set contains the identity, (2) the set contains the inverse of each element, (3) the set is closed under the operation, and (4) the operation is associative.}
+
+            \defn{abelian}{A group is abelian if the operation is commutative.}
+
+            \textit{Note: we generally write groups multiplicatively, and sometimes additively when we want to emphasize that the group is abelian.}
         %
-        \item what a group homomorphism is, how to get quotient groups, etc.
+        \item \textbf{Definitions relating to group homomorphisms:}
+
+            \defn{group homomorphism}{Given $G$ and $G'$, a homomorphism $f : G\to G'$ is a map such that $f(x\cdot y) = f(x)\cdot f(y)$ for all $x$ and $y$.
+
+            \textit{That is, the structure of $G$ is somewhat maintained in the structure of $G'$.}}
+
+            \defn{kernel}{The kernel of a homomorphism $f$ is $f^{-1}(e')$ (the set of elements in $G$ that map to the identity of $G'$).}
+
+            \defn{monomorphism}{An injective homomorphism.}
+
+            \defn{epimorphism}{A surjective homomorphism.}
+
+            \defn{isomorphism}{A bijective homomorphism. An isomorphism between two groups indicates that the two groups have the same algebraic structure.}
+        %
+        \item \textbf{Subgroups and quotient groups:}
+
+            \defn{subgroup}{A subset of a group that is still a group with the original operation.}
+
+            \defn{normal subgroup}{A subgroup $H$ of $G$ is a normal subgroup if for each $h\in H$ and $x\in G$, $x\cdot h\cdot x^{-1}$ is in $H$.
+
+            \textit{Explanation: It helps to consider two more definitions. The \textsc{left coset} is $xH = \{xh\,|\,h\in H\}$ for some fixed $x\in G$. The \textsc{right coset} is $Hx = \{hx\,|\,h\in H\}$ for some fixed $x\in G$. Both the left cosets and right cosets form partitions of $G$, but they may be different. The two partitions are the same if and only if $xH = Hx$, which is the definition of a normal subgroup.}}
+
+            \defn{quotient group}{If $H$ is a normal subgroup, the quotient $G/H$ is the group composed of the cosets of $H$ (the operations between them are inherited from $G$).
+
+            \textit{That is, if two elements are in the same coset, they are considered equivalent.}}
+        %
+        \item \textbf{Generators and direct sums:}
+
+            \defn{Let $G$ be abelian and $\{G_\alpha\}_J$ be a family of subgroups of $G$. The $G_\alpha$ generate $G$ if every element $x\in G$ can be written as a finite sum $x = x_{\alpha_1} + \cdots + x_{\alpha_n}$.
+
+            \textit{We may write $x$ as a \textsc{formal sum}: \[x = \sum_{\alpha\in J} x_\alpha\]}
         %
         \item free groups, direct sums, free/internal/external products, etc.
         %
