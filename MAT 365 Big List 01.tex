@@ -765,11 +765,21 @@
 
             \textit{That is, if two elements are in the same coset, they are considered equivalent.}}
         %
-        \item \textbf{Generators and direct sums:}
+        \item \textbf{Generating subgroups and direct sums:} %TODO: is "generating subgroup" the correct term?
 
-            \defn{Let $G$ be abelian and $\{G_\alpha\}_J$ be a family of subgroups of $G$. The $G_\alpha$ generate $G$ if every element $x\in G$ can be written as a finite sum $x = x_{\alpha_1} + \cdots + x_{\alpha_n}$.
+            \defn{generating subgroups; formal sum}{Let $G$ be abelian and $\{G_\alpha\}_J$ be a family of subgroups of $G$. The $G_\alpha$ generate $G$ if every element $x\in G$ can be written as a finite sum $x = x_{\alpha_1} + \cdots + x_{\alpha_n}$.
 
-            \textit{We may write $x$ as a \textsc{formal sum}: \[x = \sum_{\alpha\in J} x_\alpha\]}
+            We may write $x$ as a \textsc{formal sum}: \[x = \sum_{\alpha\in J} x_\alpha\]}
+
+            \defn{direct sum}{If $G$ has subgroups $\{G_\alpha\}$, and the formal sum representation of each element of $G$ is unique, $G$ is a direct sum of the $G_\alpha$. This is written using the $\oplus$ operator: \[
+                G = \bigoplus_{\alpha\in J} G_\alpha
+            \]}
+
+            \textbf{Properties:}
+                \begin{enumerate}
+                \item (Direct sum iff any homomorphisms are extendable) Let $G$ be an abelian group, and $\{G_\alpha\}$ a family of subgroups of $G$ that generates $G$. Then $G$ is the direct sum of the $G_\alpha$ if and only if for any abelian $H$ and any homomorphisms $h_\alpha : G_\alpha \to H$, there exists a homomorphism $h: G\to H$ that is the extension of the $h_\alpha$ to $G$. For such $h$, $h$ is unique.
+                \item (Direct sum of groups is direct sum of all direct sums) If $G = G_1 \oplus G_2$ and $G_1 = \bigoplus_\alpha H_\alpha$ and $G_2 = \bigoplus_\beta H_\beta$, then $G = \bigoplus_{\gamma = \alpha, \beta} H_\gamma$.
+                \end{enumerate}
         %
         \item free groups, direct sums, free/internal/external products, etc.
         %
